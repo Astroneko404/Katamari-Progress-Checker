@@ -28,7 +28,8 @@ function picHandlers() {
       return function() {
         var id = row.getElementsByTagName("td")[0].innerHTML;
         var image = document.getElementById("preview");
-        image.src = folder + id.toLowerCase().replace(" ", "_") + ".PNG";
+        var newPath = folder + id.replace(/\s+/g, "_").replace(/"/g, "").toLowerCase() + ".PNG";
+        image.src = newPath;
       };
     };
     currentRow.onclick = createClickHandler(currentRow);
