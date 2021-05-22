@@ -21,6 +21,11 @@
   /* font-size: 30px; */
 }
 
+.button_area {
+    background-color: #323C50;
+    font-weight: bold;
+}
+
 .image_preview_area {
     grid-column-start: 2;
     grid-column-end: 4;
