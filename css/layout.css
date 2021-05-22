@@ -3,7 +3,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(11, 1fr);
   grid-template-rows: repeat(4, 1fr);
   /* grid-template-rows: auto; */
   grid-gap: 15px;
@@ -13,24 +13,31 @@
   width: 100vw;
   height: 100vh;
 }
+
 .grid-container > div {
   /* background-color: rgba(255, 255, 255, 0.8); */
   text-align: center;
-  padding: 15px 0;
+  padding: 0 0;
   /* font-size: 30px; */
 }
+
 .image_preview_area {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
 }
+
 .table_area {
-    grid-column-start: 4;
-    grid-column-end: 10;
+    grid-column-start: 3;
+    grid-column-end: 11;
     grid-row-start: 2;
     grid-row-end: 4;
-    overflow-y: auto;
+    overflow: auto;
+}
+
+.table_area thead {
+    position: sticky;
 }
 
 .blue { color: #185875; }
@@ -48,10 +55,20 @@ img {
     width: 280px;
 }
 
-.container th h1 {
+.container {
+	  text-align: left;
+	  /* overflow: hidden; */
+	  width: 100%;
+	  margin: 0 auto;
+      display: table;
+      padding: 0 0 8em 0;
+      /* table-layout: fixed; */
+}
+
+.container th {
 	  font-weight: bold;
       font-size: 1em;
-      text-align: center;
+      text-align: left;
       color: #185875;
 }
 
@@ -61,15 +78,6 @@ img {
       -webkit-box-shadow: 0 2px 2px -2px #0E1119;
 	  -moz-box-shadow: 0 2px 2px -2px #0E1119;
 	  box-shadow: 0 2px 2px -2px #0E1119;
-}
-
-.container {
-	  text-align: left;
-	  overflow: hidden;
-	  width: 100%;
-	  margin: 0 auto;
-      display: table;
-      padding: 0 0 8em 0;
 }
 
 .container td, .container th {
@@ -99,6 +107,37 @@ img {
    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
    -moz-box-shadow: 0 6px 6px -6px #0E1119;
    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.th_item {
+    width: 10%;
+    position: sticky;
+    top: 0;
+}
+.th_stage {
+    width: 10%;
+    position: sticky;
+    top: 0;
+}
+.th_cate {
+    width: 10%;
+    position: sticky;
+    top: 0;
+}
+.th_lvl {
+    width: 15%;
+    position: sticky;
+    top: 0;
+}
+.th_loc {
+    width: 35%;
+    position: sticky;
+    top: 0;
+}
+.th_check {
+    width: 10%;
+    position: sticky;
+    top: 0;
 }
 
 @media (max-width: 800px) {

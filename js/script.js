@@ -1,21 +1,27 @@
+var folder = "images/item collection with names/";
+
 function appendTable(data) {
-    // var item = `${data.Item}`
-    var table_content = document.getElementById("dataframe");
-    console.log(table_content);
+    // var table_content = document.getElementById("dataframe");
+    var line;
+    for (var i=0; i<data.length; i++) {
+        line = $('<tr/>')
+        line.append("<td>" + data[i].Item + "</td>");
+        line.append("<td>" + data[i].Place + "</td>");
+        line.append("<td>" + data[i].Category + "</td>");
+        line.append("<td>" + data[i].Level + "</td>");
+        line.append("<td>" + data[i].Location + "</td>");
+        line.append("<td></td>");
+        $('tbody').append(line);
+        console.log(line);
+        // return false; // Test purpose
+    }
 }
 
-// $.getJSON( , function(data) {
-//   var items = [];
-//   $.each( data, function( key, val ) {
-//     items.push( "<tr><td>" + key + "'>" + val + "</li>" );
-//   });
-//
-//   $( "<ul/>", {
-//     "class": "my-new-list",
-//     html: items.join( "" )
-//   }).appendTo( "body" );
-// });
+function showPic() {
+    //
+
+}
 
 window.onload = function() {
-    $.getJSON("Katamari Cleaned.json", appendTable);
+    $.getJSON("data/Katamari Cleaned.json", appendTable);
 }
