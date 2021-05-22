@@ -1,7 +1,7 @@
 var folder = "images/item collection with names/";
 
 function appendTable(data) {
-    // var table_content = document.getElementById("dataframe");
+    // Loading table from JSON file
     var line;
     for (var i=0; i<data.length; i++) {
         line = $('<tr/>')
@@ -12,14 +12,27 @@ function appendTable(data) {
         line.append("<td>" + data[i].Location + "</td>");
         line.append("<td></td>");
         $('tbody').append(line);
-        console.log(line);
         // return false; // Test purpose
     }
+
+    // Add event to rows
+    picHandlers();
 }
 
-function showPic() {
-    //
-
+function picHandlers() {
+  var table = document.getElementById("dataframe");
+  var rows = table.getElementsByTagName("tr");
+  for (i = 0; i < rows.length; i++) {
+    var currentRow = table.rows[i];
+    var createClickHandler = function(row) {
+      return function() {
+        var id = row.getElementsByTagName("td")[0].innerHTML;
+        var image = document.getElementById("preview");
+        image.src = folder + id.toLowerCase().replace(" ", "_") + ".PNG";
+      };
+    };
+    currentRow.onclick = createClickHandler(currentRow);
+  }
 }
 
 window.onload = function() {
