@@ -37,7 +37,7 @@ function picHandlers() {
         var id = row.getElementsByTagName("td")[0].innerHTML;
         var image = document.getElementById("preview");
         var newPath = folder + id.replace(/\s+/g, "_").replace(/"/g, "")
-            .replace("#", "%35").toLowerCase() + ".PNG";
+            .replace("#", "%23").replace("&", "%26").toLowerCase() + ".PNG";
         console.log(newPath);
         image.src = newPath;
       };
