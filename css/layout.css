@@ -29,7 +29,7 @@
 .image_preview_area {
     grid-column-start: 2;
     grid-column-end: 4;
-    grid-row-start: 2;
+    grid-row-start: 1;
     grid-row-end: 5;
     overflow: hidden;
 }
@@ -37,7 +37,7 @@
 .table_area {
     grid-column-start: 4;
     grid-column-end: 11;
-    grid-row-start: 2;
+    grid-row-start: 1;
     grid-row-end: 5;
     overflow: auto;
 }

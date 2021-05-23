@@ -3,13 +3,17 @@ var folder = "images/item collection with names/";
 function appendTable(data) {
     // Loading table from JSON file
     var line;
-    for (var i=0; i<data.length; i++) {
-        line = $('<tr />')
+    for (var i = 0; i < data.length; i++) {
+        line = $(
+            '<tr class="data_row" data_place="' + data[i].Place + '"' +
+            ' data_level="' + data[i].Level + '"' +
+             '/>')
         line.append("<td>" + data[i].Item + "</td>");
-        line.append(
-            '<td class="data-stage" rel="' + data[i].Place +
-            '">' + data[i].Place + "</td>"
-        );
+        // line.append(
+        //     '<td class="data-stage" rel="' + data[i].Place +
+        //     '">' + data[i].Place + "</td>"
+        // );
+        line.append("<td>" + data[i].Place + "</td>")
         line.append("<td>" + data[i].Category + "</td>");
         line.append("<td>" + data[i].Level + "</td>");
         line.append("<td>" + data[i].Location + "</td>");
@@ -32,7 +36,9 @@ function picHandlers() {
       return function() {
         var id = row.getElementsByTagName("td")[0].innerHTML;
         var image = document.getElementById("preview");
-        var newPath = folder + id.replace(/\s+/g, "_").replace(/"/g, "").toLowerCase() + ".PNG";
+        var newPath = folder + id.replace(/\s+/g, "_").replace(/"/g, "")
+            .replace("#", "%35").toLowerCase() + ".PNG";
+        console.log(newPath);
         image.src = newPath;
       };
     };
@@ -40,29 +46,76 @@ function picHandlers() {
   }
 }
 
-$("input:checkbox").click(function () {
+document.getElementById("submit_button").onclick = function() {
     var showAll = true;
     $('tr').not('.first').hide();
+    var checkListStage = new Array();
+    var checkListLevel = new Array();
+    var checked = false;
+
+    // Read through each checkbox
     $('input[type=checkbox]').each(function () {
         if ($(this)[0].checked) {
-            showAll = false;
-            var status = $(this).attr('rel');
-            var value = $(this).val();
-
-            	$('td').each(function() {
-              	if ($(this).attr('class') == status) {
-                    if ($(this).attr('rel').includes(value)) {
-                        $(this).parent('tr').show();
-                    }
-                }
-              });
-            /* $('td.' + status + '[rel="/.g' + value + '/.g"]').parent('tr').show() */;
+            if ($(this).attr('class') == 'check_stage')  {
+                checkListStage.push($(this).attr('value'));
+            }
+            else if ($(this).attr('class') == 'check_level') {
+                checkListLevel.push($(this).attr('value'));
+            }
+            else {}
         }
     });
+
+    //
+    if (checkListStage.length > 0 && checkListLevel.length > 0) {
+        showAll = false;
+        $('.data_row').each(function() {
+            showStage = false;
+            showLevel = false;
+            for (var i = 0; i < checkListStage.length; i++) {
+                if ($(this).attr('data_place').includes(checkListStage[i])) {
+                    showStage = true;
+                    break;
+                }
+            }
+            for (var j = 0; j < checkListLevel.length; j++) {
+                if ($(this).attr('data_level') == checkListLevel[j]) {
+                    showLevel = true;
+                    break;
+                }
+            }
+            if (showStage == true && showLevel == true) {
+                $(this).show();
+            }
+        });
+    }
+    else if (checkListStage.length > 0 && checkListLevel.length == 0) {
+        showAll = false;
+        $('.data_row').each(function() {
+            for (var i = 0; i < checkListStage.length; i++) {
+                if ($(this).attr('data_place').includes(checkListStage[i])) {
+                    $(this).show();
+                    break;
+                }
+            }
+        });
+    }
+    else if (checkListStage.length == 0 && checkListLevel.length > 0) {
+        showAll = false;
+        $('.data_row').each(function() {
+            for (var j = 0; j < checkListLevel.length; j++) {
+                if ($(this).attr('data_level') == checkListLevel[j]) {
+                    $(this).show();
+                    break;
+                }
+            }
+        });
+    }
+
     if(showAll){
         $('tr').show();
     }
-});
+};
 
 window.onload = function() {
     $.getJSON("data/Katamari Cleaned.json", appendTable);
