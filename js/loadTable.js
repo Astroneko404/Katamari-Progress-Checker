@@ -117,6 +117,17 @@ document.getElementById("submit_button").onclick = function() {
     }
 };
 
+$(".level_filter_area").hide();
+
+$('#stage_button').on('click', function() {
+    $(".level_filter_area").hide();
+    $(".stage_filter_area").show();
+});
+
+$("#map_button").on('click', function() {
+    $(".level_filter_area").show();
+    $(".stage_filter_area").hide();
+});
 window.onload = function() {
     $.getJSON("data/Katamari Cleaned.json", appendTable);
 }

@@ -7,74 +7,81 @@
     </head>
 	<body>
         <div class="title_area">
-            <h1>Katamari Damacy Progress Check</h1>
+            <h2>Katamari Damacy Progress Check</h2>
         </div>
         <div class="button_area">
-            <b>Stages</b>
-            <br />
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas1">mas1
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas2">mas2
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas3">mas3
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas4">mas4
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas5">mas5
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas6">mas6
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas7">mas7
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas8">mas8
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mas9">mas9
-            <input class="check_stage" rel="data-stage" type="checkbox" value="mtm">mtm
-            <input class="check_stage" rel="data-stage" type="checkbox" value="eternal1">eternal1
-            <input class="check_stage" rel="data-stage" type="checkbox" value="eternal2">eternal2
-            <input class="check_stage" rel="data-stage" type="checkbox" value="eternal3">eternal3
-            <br />
-            <input class="check_stage" rel="data-stage" type="checkbox" value="cancer">cancer
-            <input class="check_stage" rel="data-stage" type="checkbox" value="cygnus">cygnus
-            <input class="check_stage" rel="data-stage" type="checkbox" value="corona">corona
-            <input class="check_stage" rel="data-stage" type="checkbox" value="pisces">pisces
-            <input class="check_stage" rel="data-stage" type="checkbox" value="virgo">virgo
-            <input class="check_stage" rel="data-stage" type="checkbox" value="ursa major">ursa major
-            <input class="check_stage" rel="data-stage" type="checkbox" value="gemini">gemini
-            <input class="check_stage" rel="data-stage" type="checkbox" value="taurus">taurus
-            <br />
-            <b>Map</b>
-            <br />
-            House:
-            <input class="check_level" rel="data-level" type="checkbox" value="Living Room">Living Room
-            <input class="check_level" rel="data-level" type="checkbox" value="Garden and Porch">Garden and Porch
-            <input class="check_level" rel="data-level" type="checkbox" value="Roof">Roof
-            <input class="check_level" rel="data-level" type="checkbox" value="Kitchen">Kitchen
-            <input class="check_level" rel="data-level" type="checkbox" value="Entry Hall">Entry Hall
-            <input class="check_level" rel="data-level" type="checkbox" value="Hallway">Hallway
-            <br />
-            Town:
-            <input class="check_level" rel="data-level" type="checkbox" value="N. Pigeon St">N. Pigeon St
-            <input class="check_level" rel="data-level" type="checkbox" value="Shopping Street">Shopping Street
-            <input class="check_level" rel="data-level" type="checkbox" value="Quail River">Quail River
-            <input class="check_level" rel="data-level" type="checkbox" value="S. Pigeon St.">S. Pigeon St.
-            <input class="check_level" rel="data-level" type="checkbox" value="Roadway">Roadway
-            <input class="check_level" rel="data-level" type="checkbox" value="Dove Lake">Dove Lake
-            <input class="check_level" rel="data-level" type="checkbox" value="Sparrow Hill">Sparrow Hill
-            <input class="check_level" rel="data-level" type="checkbox" value="Baseball Field">Baseball Field
-            <input class="check_level" rel="data-level" type="checkbox" value="Campground">Campground
-            <input class="check_level" rel="data-level" type="checkbox" value="Construction Site">Construction Site
-            <input class="check_level" rel="data-level" type="checkbox" value="S. Pigeon St.">S. Pigeon St.
-            <br />
-            World:
-            <input class="check_level" rel="data-level" type="checkbox" value="Seagull Park">Seagull Park
-            <input class="check_level" rel="data-level" type="checkbox" value="Paradise">Paradise
-            <input class="check_level" rel="data-level" type="checkbox" value="Urchin Town">Urchin Town
-            <input class="check_level" rel="data-level" type="checkbox" value="Sea Breeze Town">Sea Breeze Town
-            <input class="check_level" rel="data-level" type="checkbox" value="Seaslug Ranch">Seaslug Ranch
-            <input class="check_level" rel="data-level" type="checkbox" value="Sunshine Beach">Sunshine Beach
-            <input class="check_level" rel="data-level" type="checkbox" value="Fishing Port">Fishing Port
-            <input class="check_level" rel="data-level" type="checkbox" value="Circus">Circus
-            <input class="check_level" rel="data-level" type="checkbox" value="Mullet Bay">Mullet Bay
-            <br />
-            <input class="check_level" rel="data-level" type="checkbox" value="Whirlpool Point">Whirlpool Point
-            <input class="check_level" rel="data-level" type="checkbox" value="Kuroshio Point">Kuroshio Point
-            <input class="check_level" rel="data-level" type="checkbox" value="Dolphin City">Dolphin City
-            <input class="check_level" rel="data-level" type="checkbox" value="Whale City">Whale City
-            <input class="check_level" rel="data-level" type="checkbox" value="Big Blue Sea">Big Blue Sea
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <ul>
+                <li><a href="#" id="stage_button"><b>Stages</b></a></li>
+                <li><a href="#" id="map_button"><b>Maps</b></a></li>
+            </ul>
+
+            <br /><br />
+            <!-- <br /> -->
+
+            <div class="stage_filter_area">
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas1">mas1
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas2">mas2
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas3">mas3
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas4">mas4
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas5">mas5
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas6">mas6
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas7">mas7
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas8">mas8
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mas9">mas9
+                <input class="check_stage" rel="data-stage" type="checkbox" value="mtm">mtm
+                <input class="check_stage" rel="data-stage" type="checkbox" value="eternal1">eternal1
+                <input class="check_stage" rel="data-stage" type="checkbox" value="eternal2">eternal2
+                <input class="check_stage" rel="data-stage" type="checkbox" value="eternal3">eternal3
+                <br />
+                <input class="check_stage" rel="data-stage" type="checkbox" value="cancer">cancer
+                <input class="check_stage" rel="data-stage" type="checkbox" value="cygnus">cygnus
+                <input class="check_stage" rel="data-stage" type="checkbox" value="corona">corona
+                <input class="check_stage" rel="data-stage" type="checkbox" value="pisces">pisces
+                <input class="check_stage" rel="data-stage" type="checkbox" value="virgo">virgo
+                <input class="check_stage" rel="data-stage" type="checkbox" value="ursa major">ursa major
+                <input class="check_stage" rel="data-stage" type="checkbox" value="gemini">gemini
+                <input class="check_stage" rel="data-stage" type="checkbox" value="taurus">taurus
+            </div>
+            <div class="level_filter_area">
+                House:
+                <input class="check_level" rel="data-level" type="checkbox" value="Living Room">Living Room
+                <input class="check_level" rel="data-level" type="checkbox" value="Garden and Porch">Garden and Porch
+                <input class="check_level" rel="data-level" type="checkbox" value="Roof">Roof
+                <input class="check_level" rel="data-level" type="checkbox" value="Kitchen">Kitchen
+                <input class="check_level" rel="data-level" type="checkbox" value="Entry Hall">Entry Hall
+                <input class="check_level" rel="data-level" type="checkbox" value="Hallway">Hallway
+                <br />
+                Town:
+                <input class="check_level" rel="data-level" type="checkbox" value="N. Pigeon St">N. Pigeon St
+                <input class="check_level" rel="data-level" type="checkbox" value="Shopping Street">Shopping Street
+                <input class="check_level" rel="data-level" type="checkbox" value="Quail River">Quail River
+                <input class="check_level" rel="data-level" type="checkbox" value="S. Pigeon St.">S. Pigeon St.
+                <input class="check_level" rel="data-level" type="checkbox" value="Roadway">Roadway
+                <input class="check_level" rel="data-level" type="checkbox" value="Dove Lake">Dove Lake
+                <input class="check_level" rel="data-level" type="checkbox" value="Sparrow Hill">Sparrow Hill
+                <input class="check_level" rel="data-level" type="checkbox" value="Baseball Field">Baseball Field
+                <input class="check_level" rel="data-level" type="checkbox" value="Campground">Campground
+                <input class="check_level" rel="data-level" type="checkbox" value="Construction Site">Construction Site
+                <input class="check_level" rel="data-level" type="checkbox" value="S. Pigeon St.">S. Pigeon St.
+                <br />
+                World:
+                <input class="check_level" rel="data-level" type="checkbox" value="Seagull Park">Seagull Park
+                <input class="check_level" rel="data-level" type="checkbox" value="Paradise">Paradise
+                <input class="check_level" rel="data-level" type="checkbox" value="Urchin Town">Urchin Town
+                <input class="check_level" rel="data-level" type="checkbox" value="Sea Breeze Town">Sea Breeze Town
+                <input class="check_level" rel="data-level" type="checkbox" value="Seaslug Ranch">Seaslug Ranch
+                <input class="check_level" rel="data-level" type="checkbox" value="Sunshine Beach">Sunshine Beach
+                <input class="check_level" rel="data-level" type="checkbox" value="Fishing Port">Fishing Port
+                <input class="check_level" rel="data-level" type="checkbox" value="Circus">Circus
+                <input class="check_level" rel="data-level" type="checkbox" value="Mullet Bay">Mullet Bay
+                <br />
+                <input class="check_level" rel="data-level" type="checkbox" value="Whirlpool Point">Whirlpool Point
+                <input class="check_level" rel="data-level" type="checkbox" value="Kuroshio Point">Kuroshio Point
+                <input class="check_level" rel="data-level" type="checkbox" value="Dolphin City">Dolphin City
+                <input class="check_level" rel="data-level" type="checkbox" value="Whale City">Whale City
+                <input class="check_level" rel="data-level" type="checkbox" value="Big Blue Sea">Big Blue Sea
+            </div>
+            &nbsp;
             <input id="submit_button" type="button" value="submit">
         </div>
         <div class="grid-container">

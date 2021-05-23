@@ -26,6 +26,21 @@
     font-weight: normal;
 }
 
+.button_area a {
+    color: #FFF842;
+    text-decoration: none;
+}
+
+.button_area ul {
+    padding: 0;
+}
+
+.button_area li {
+    float: left;
+    padding: 10px 30px;
+    list-style: none;
+}
+
 .image_preview_area {
     grid-column-start: 2;
     grid-column-end: 4;
