@@ -7,20 +7,15 @@ function appendTable(data) {
         line = $(
             '<tr class="data_row" data_place="' + data[i].Place + '"' +
             ' data_level="' + data[i].Level + '"' +
-             '/>')
+             '>')
         line.append("<td>" + data[i].Item + "</td>");
-        // line.append(
-        //     '<td class="data-stage" rel="' + data[i].Place +
-        //     '">' + data[i].Place + "</td>"
-        // );
         line.append("<td>" + data[i].Place + "</td>")
         line.append("<td>" + data[i].Category + "</td>");
         line.append("<td>" + data[i].Level + "</td>");
         line.append("<td>" + data[i].Location + "</td>");
-        line.append("<td></td>");
+        line.append('<td><input type="checkbox" class="large_checkbox" /></td>');
+        line.append('</tr>')
         $('tbody').append(line);
-        // console.log(line);
-        // return false; // Test purpose
     }
 
     // Add event to rows
@@ -30,7 +25,7 @@ function appendTable(data) {
 function picHandlers() {
   var table = document.getElementById("dataframe");
   var rows = table.getElementsByTagName("tr");
-  for (i = 0; i < rows.length; i++) {
+  for (i = 1; i < rows.length; i++) {
     var currentRow = table.rows[i];
     var createClickHandler = function(row) {
       return function() {
@@ -38,7 +33,6 @@ function picHandlers() {
         var image = document.getElementById("preview");
         var newPath = folder + id.replace(/\s+/g, "_").replace(/"/g, "")
             .replace("#", "%23").replace("&", "%26").toLowerCase() + ".PNG";
-        console.log(newPath);
         image.src = newPath;
       };
     };

@@ -57,8 +57,18 @@
     overflow: auto;
 }
 
+.table_area a {
+    color: #185875;
+    text-decoration: none;
+}
+
 .table_area thead {
     position: sticky;
+}
+
+.table_area input[type=checkbox] {
+    width: 25px;
+    height: 25px;
 }
 
 .blue { color: #185875; }
