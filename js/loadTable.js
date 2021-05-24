@@ -122,6 +122,13 @@ $("#map_button").on('click', function() {
     $(".level_filter_area").show();
     $(".stage_filter_area").hide();
 });
+
+$("#credits").on('click', function() {
+    text = "This website is made by Astray404. All text data is provided" +
+            "by Xeinok and all images are provided by @KatamariItems."
+    alert(text);
+});
+
 window.onload = function() {
     $.getJSON("data/Katamari Cleaned.json", appendTable);
 }
