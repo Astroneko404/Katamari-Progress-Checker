@@ -36,8 +36,6 @@ $(document).ready(function() {
         },
         fixedHeader: true,
         initComplete: function() {
-
-
             $("#dataframe thead tr:eq(1) th").each(function (i) {
                 if (i == 2) {
                     var select = $('<select><option value=""></option></select>').appendTo($(this).empty()).on('change', function() {

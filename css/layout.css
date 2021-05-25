@@ -4,7 +4,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(9, 1fr);
+  grid-template-rows: repeat(12, 1fr);
   /* grid-template-rows: auto; */
   grid-gap: 15px;
   background-color: #6f4f64;
@@ -33,15 +33,15 @@
     grid-column-start: 3;
     grid-column-end: 12;
     grid-row-start: 1;
-    grid-row-end: 9;
+    grid-row-end: 12;
     overflow: auto;
 }
 
 #credit_info {
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 8;
-    grid-row-end: 9;
+    grid-row-start: 10;
+    grid-row-end: 12;
     overflow: hidden;
 }
 
@@ -111,12 +111,12 @@ img {
 }
 
 #dataframe tbody td {
-    height: 50px;
+    height: 40px;
 }
 
 #dataframe tr {
     background-color: #323C50;
-
+    height: 40px;
 }
 
 #dataframe th {
