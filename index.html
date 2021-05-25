@@ -3,13 +3,14 @@
     <head>
       	<title>Katamari Damacy Progress Check</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
     	<link rel="stylesheet" href="css/layout.css">
     </head>
 	<body>
         <div class="title_area">
             <h2>Katamari Damacy Progress Check</h2>
         </div>
-        <div class="button_area">
+        <!-- <div class="button_area">
             <ul>
                 <li><a href="#" id="stage_button"><b>Stages</b></a></li>
                 <li><a href="#" id="map_button"><b>Maps</b></a></li>
@@ -83,23 +84,31 @@
             </div>
             &nbsp;
             <input id="submit_button" type="button" value="submit">
-        </div>
+        </div> -->
         <div class="grid-container">
             <div class="image_preview_area">
                 <img id="preview" src="images/cover.jpg" alt="" />
             </div>
             <div class="table_area">
                 <table id="dataframe" class="container">
-                    <thead><tr class="first">
-                        <th class="th_item">Item</th>
-                        <th class="th_stage">Stage</th>
-                        <th class="th_cate">World</th>
-                        <th class="th_lvl">Level</th>
-                        <th class="th_loc">Location</th>
-                        <th class="th_check">
-                            <a id="sort_checkbox" href="#" dir="desc">Check</a>
-                        </th>
-                    </tr></thead>
+                    <thead>
+                        <tr class="first">
+                            <th id="th_item">Item</th>
+                            <th id="th_stage">Stage</th>
+                            <th id="th_cate">World</th>
+                            <th id="th_lvl">Level</th>
+                            <th id="th_loc">Location</th>
+                            <th id="th_check">Check</th>
+                        </tr>
+                        <tr class="second">
+                            <th id="th_item"></th>
+                            <th id="th_stage"></th>
+                            <th id="th_cate"></th>
+                            <th id="th_lvl"></th>
+                            <th id="th_loc"></th>
+                            <th id="th_check"></th>
+                        </tr>
+                    </thead>
                     <tbody>
                     </tbody>
                 </table>
@@ -108,7 +117,8 @@
                 <a href="#" id="credits"><b>Credits</b></a>
             </div>
         </div>
-        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-3.5.1.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
         <script type="text/javascript" src="js/loadTable.js"></script>
         <script type="text/javascript" src="js/sort.js"></script>
 	</body>

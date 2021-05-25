@@ -1,126 +1,135 @@
 var folder = "images/item collection with names/";
+var table;
 
-function appendTable(data) {
-    // Loading table from JSON file
-    var line;
-    for (var i = 0; i < data.length; i++) {
-        line = $(
-            '<tr class="data_row" data_place="' + data[i].Place + '"' +
-            ' data_level="' + data[i].Level + '"' +
-             '>')
-        line.append("<td>" + data[i].Item + "</td>");
-        line.append("<td>" + data[i].Place + "</td>")
-        line.append("<td>" + data[i].Category + "</td>");
-        line.append("<td>" + data[i].Level + "</td>");
-        line.append("<td>" + data[i].Location + "</td>");
-        line.append('<td><input type="checkbox" class="large_checkbox" /></td>');
-        line.append('</tr>')
-        $('tbody').append(line);
-    }
+$(document).ready(function() {
+    table = $('#dataframe').DataTable({
+        ajax: {
+            url: "data/Katamari Cleaned.json",
+        },
+        autoWidth: false,
+        bSortable: false,
+        bLengthChange: false,
+        columnDefs: [{
+            'targets': 5,
+            'checkboxes': {
+                'selectRow': true,
+                'selectCallback': function(nodes, selected) {
+                    if($('#show-selected').val() !== 'all') {
+                        table.draw(false);
+                    }
+                }
+            },
+            'render': function (data, type, full, meta){
+                 return '<input type="checkbox" class="check" value="" />';
+             }
+        }],
+        columns: [
+            { "data": "Item" },
+            { "data": "Category" },
+            { "data": "Level" },
+            { "data": "Place" },
+            { "data": "Location" }
+            // { "defaultContent": '<input type="checkbox" value="">' }
+        ],
+        fixedColumns: {
+            heightMatch: 'none'
+        },
+        fixedHeader: true,
+        initComplete: function() {
 
-    // Add event to rows
-    picHandlers();
-}
 
-function picHandlers() {
-  var table = document.getElementById("dataframe");
-  var rows = table.getElementsByTagName("tr");
-  for (i = 1; i < rows.length; i++) {
-    var currentRow = table.rows[i];
-    var createClickHandler = function(row) {
-      return function() {
-        var id = row.getElementsByTagName("td")[0].innerHTML;
-        var image = document.getElementById("preview");
-        var newPath = folder + id.replace(/\s+/g, "_").replace(/"/g, "")
-            .replace("#", "%23").replace("&", "%26").toLowerCase() + ".PNG";
-        image.src = newPath;
-      };
-    };
-    currentRow.onclick = createClickHandler(currentRow);
-  }
-}
+            $("#dataframe thead tr:eq(1) th").each(function (i) {
+                if (i == 2) {
+                    var select = $('<select><option value=""></option></select>').appendTo($(this).empty()).on('change', function() {
+                            var val = $(this).val();
+                            // console.log(val);
+                            table.column( i )
+                                .search( val ? '^'+$(this).val()+'$' : val, true, false )
+                                .draw();
+                    });
 
-document.getElementById("submit_button").onclick = function() {
-    var showAll = true;
-    $('tr').not('.first').hide();
-    var checkListStage = new Array();
-    var checkListLevel = new Array();
-    var checked = false;
+                    table.column( i ).data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    });
+                }
+                else if (i == 3) {
+                    var select = $('<select><option value=""></option></select>').appendTo($(this).empty()).on('change', function() {
+                            var val = $(this).val();
+                            // console.log(val);
+                            table.column( i )
+                                .search( val ? '^.*'+$(this).val()+'.*$' : val, true, false )
+                                .draw();
+                    });
 
-    // Read through each checkbox
-    $('input[type=checkbox]').each(function () {
-        if ($(this)[0].checked) {
-            if ($(this).attr('class') == 'check_stage')  {
-                checkListStage.push($(this).attr('value'));
-            }
-            else if ($(this).attr('class') == 'check_level') {
-                checkListLevel.push($(this).attr('value'));
-            }
-            else {}
-        }
+                    select.append( '<option value="mas1">mas1</option><option value="mas2">mas2</option>' );
+                    select.append( '<option value="mas3">mas3</option><option value="mas4">mas4</option>' );
+                    select.append( '<option value="mas5">mas5</option><option value="mas6">mas6</option>' );
+                    select.append( '<option value="mas7">mas7</option><option value="mas8">mas8</option>' );
+                    select.append( '<option value="mas9">mas9</option><option value="mtm">mtm</option>' );
+                    select.append( '<option value="cancer">cancer</option><option value="cygnus">cygnus</option>' );
+                    select.append( '<option value="corona">corona</option><option value="pisces">pisces</option>' );
+                    select.append( '<option value="virgo">virgo</option><option value="ursa major">ursa major</option>' );
+                    select.append( '<option value="gemini">gemini</option><option value="taurus">taurus</option>' );
+                    select.append( '<option value="eternal1">eternal1</option><option value="eternal2">eternal2</option>' );
+                    select.append( '<option value="eternal3">eternal3</option>' );
+                }
+                else if (i == 5) {
+                    var select = $('<select id="show-selected"><option value="all" selected>Show all</option><option value="selected">Selected</option></select>')
+                    .appendTo($(this).empty()).on('change', function() {
+                        var val = $(this).val();
+
+                        // If all records should be displayed
+                        if(val === 'all'){
+                         $.fn.dataTable.ext.search.pop();
+                         table.draw();
+                        }
+
+                        // If selected records should be displayed
+                        if(val === 'selected'){
+                         $.fn.dataTable.ext.search.pop();
+                         $.fn.dataTable.ext.search.push(
+                            function (settings, data, dataIndex){
+                               // return ($(table.row(dataIndex).node()).hasClass('selected')) ? true : false;
+                               // console.log( $('#dataframe tbody tr:eq(' + dataIndex + ') td:eq(5)').data() );
+                               return ($(table.row(dataIndex).node()).hasClass('selected')) ? true : false;
+                            }
+                         );
+
+                         table.draw();
+                        }
+                    });
+                }
+            });
+        },
+        lengthMenu: [[5], [5]],
+        order: [[1, 'asc']],
+        ordering: false,
+        // orderCellsTop: true,
+        select: {
+         'style': 'multi'
+        },
     });
 
-    //
-    if (checkListStage.length > 0 && checkListLevel.length > 0) {
-        showAll = false;
-        $('.data_row').each(function() {
-            showStage = false;
-            showLevel = false;
-            for (var i = 0; i < checkListStage.length; i++) {
-                if ($(this).attr('data_place').includes(checkListStage[i])) {
-                    showStage = true;
-                    break;
-                }
-            }
-            for (var j = 0; j < checkListLevel.length; j++) {
-                if ($(this).attr('data_level') == checkListLevel[j]) {
-                    showLevel = true;
-                    break;
-                }
-            }
-            if (showStage == true && showLevel == true) {
-                $(this).show();
-            }
-        });
-    }
-    else if (checkListStage.length > 0 && checkListLevel.length == 0) {
-        showAll = false;
-        $('.data_row').each(function() {
-            for (var i = 0; i < checkListStage.length; i++) {
-                if ($(this).attr('data_place').includes(checkListStage[i])) {
-                    $(this).show();
-                    break;
-                }
-            }
-        });
-    }
-    else if (checkListStage.length == 0 && checkListLevel.length > 0) {
-        showAll = false;
-        $('.data_row').each(function() {
-            for (var j = 0; j < checkListLevel.length; j++) {
-                if ($(this).attr('data_level') == checkListLevel[j]) {
-                    $(this).show();
-                    break;
-                }
-            }
-        });
-    }
+} );
 
-    if(showAll){
-        $('tr').show();
-    }
-};
-
-$(".level_filter_area").hide();
-
-$('#stage_button').on('click', function() {
-    $(".level_filter_area").hide();
-    $(".stage_filter_area").show();
+// Image Handler
+$('#dataframe').on('click', 'tr', function () {
+    var id = $(this).children(":first").text();
+    var image = document.getElementById("preview");
+    var newPath = folder + id.replace(/\s+/g, "_").replace(/"/g, "")
+                .replace("#", "%23").replace("&", "%26").toLowerCase() + ".PNG";
+    image.src = newPath;
+});
+$('#dataframe').on('click', 'thead', function () {
+    var image = document.getElementById("preview");
+    image.src = "images/cover.jpg";
 });
 
-$("#map_button").on('click', function() {
-    $(".level_filter_area").show();
-    $(".stage_filter_area").hide();
+// Checkbox
+$("#dataframe").on("click", "input[type='checkbox']", function() {
+    var tr = $(this).closest("tr");
+    console.log("clicked");
+    tr.toggleClass('selected');
 });
 
 $("#credits").on('click', function() {
@@ -129,6 +138,6 @@ $("#credits").on('click', function() {
     alert(text);
 });
 
-window.onload = function() {
-    $.getJSON("data/Katamari Cleaned.json", appendTable);
-}
+// window.onload = function() {
+//     $.getJSON("data/Katamari Cleaned.json", appendTable);
+// }
