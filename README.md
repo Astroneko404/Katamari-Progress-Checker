@@ -1,5 +1,5 @@
 ## Katamari-Progress-Checker
-<img src="https://z3.ax1x.com/2021/05/26/2SOXL9.jpg" />
+<img src="https://user-images.githubusercontent.com/33112694/172579248-26abddb0-fd62-451e-9f75-8fd0f4562dd3.png" />
 
 This is made to track the PSN trophy ["King of Katamari Damacy"](https://psnprofiles.com/trophy/11871-katamari-damacy-reroll/22-king-of-katamari-damacy)
 in the game Katamari Damacy Reroll.
