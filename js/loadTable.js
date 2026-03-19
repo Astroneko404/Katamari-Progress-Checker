@@ -1,5 +1,10 @@
 var folder = "images/item collection with names/";
 var table;
+var savedState = JSON.parse(localStorage.getItem('checkboxState')) || {};
+
+function getRowId(data) {
+    return (data.Item + "_" + data.Category + "_" + data.Level + "_").replace(/\s+/g, "_");
+}
 
 $(document).ready(function() {
     table = $('#dataframe').DataTable({
@@ -103,6 +108,14 @@ $(document).ready(function() {
         order: [[1, 'asc']],
         ordering: false,
         // orderCellsTop: true,
+        rowCallback: function(row, data) {
+            var id = getRowId(data);
+
+            if (savedState[id]) {
+                $(row).addClass('selected');
+                $(row).find("input[type='checkbox']").prop('checked', true);
+            }
+        },
         select: {
          'style': 'multi'
         },
@@ -126,16 +139,16 @@ $('#dataframe').on('click', 'thead', function () {
 // Checkbox
 $("#dataframe").on("click", "input[type='checkbox']", function() {
     var tr = $(this).closest("tr");
-    console.log("clicked");
+    var rowData = table.row(tr).data();
+    var id = getRowId(rowData);
+    // console.log("clicked");
     tr.toggleClass('selected');
+    savedState[id] = tr.hasClass('selected');
+    localStorage.setItem('checkboxState', JSON.stringify(savedState));
 });
 
 $("#credits").on('click', function() {
-    text = "This website is made by Astray404. All text data is provided" +
+    text = "This website is made by Astray404(@astroneko404).\nAll text data is provided" +
             "by Xeinok and all images are provided by @KatamariItems."
     alert(text);
 });
-
-// window.onload = function() {
-//     $.getJSON("data/Katamari Cleaned.json", appendTable);
-// }
